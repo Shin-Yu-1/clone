@@ -43,7 +43,7 @@
 ## 🚀 **설치 및 실행 방법**
 1. **프로젝트 클론**
    ```bash
-   git clone https://github.com/사용자명/netflix-clone-ui.git
+   git clone -b feat/netflix --single-branch git@github.com:Shin-Yu-1/clone.git
    ```
 2. **폴더 이동**
    ```bash
