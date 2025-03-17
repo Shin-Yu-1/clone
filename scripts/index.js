@@ -1,13 +1,13 @@
+import { TodoService } from "./todoService.js";
+
 class TodoApp {
   constructor() {
-      this.todoList = JSON.parse(localStorage.getItem('todos')) || [];
-      this.todoContainer = document.getElementById('list');
-      this.addButton = document.querySelector('[name="add-button"]');
-      this.addButton.addEventListener('click', () => this.addInputHandler());
-      this.renderTodos();
+    this.todoService = new TodoService();
+    this.todoContainer = document.getElementById('list');
+    this.addButton = document.querySelector('[name="add-button"]');
+    this.addButton.addEventListener('click', () => this.addInputHandler());
+    this.renderTodos();
   }
-
-  saveTodos = () => localStorage.setItem('todos', JSON.stringify(this.todoList));
 
   addInputHandler = () => {
     const existingInput = document.querySelector('.todo-input');
@@ -18,91 +18,97 @@ class TodoApp {
       this.addButton.textContent = 'ADD';
 
       if (text) {
-        this.addTodo(text);
+        this.todoService.addTodo(text);
       }
+
+      this.renderTodos();
     } else {
       this.showInput();
     }
   }
 
   showInput = () => {
-    if (this.todoContainer.querySelector('.todo-input')) {
-      return;
-    }
-
-    this.addButton.innerHTML = 'SAVE';
-
+    this.addButton.textContent = 'SAVE';
+    
     const todoInput = document.createElement('input');
     todoInput.type = 'text';
     todoInput.placeholder = '할 일 입력';
     todoInput.classList.add('todo-input');
-
+    
     this.addButton.parentNode.insertBefore(todoInput, this.addButton);
-
     todoInput.focus();
-
+    
     const handleKeydown = (e) => {
-      if (todoInput.value && e.key === 'Enter') {
-        this.addTodo(todoInput.value);
-  
-        todoInput.removeEventListener('keydown', handleKeydown);
+      if (e.key === 'Enter') {
+        this.addInputHandler();
+      } else if (e.key === 'Escape') {
         todoInput.remove();
+        this.addButton.textContent = 'ADD';
       }
     };
 
     todoInput.addEventListener('keydown', handleKeydown)
   }
 
-  addTodo = (text) => {
-      this.todoList.push({ text, editable: false });
-      this.saveTodos();
-      this.renderTodos();
-  };
-
-  toggleEdit = (index) => {
-      this.todoList[index].editable = !this.todoList[index].editable;
-      this.saveTodos();
-      this.renderTodos();
-  };
-
-  updateTodo = (index, newText) => {
-      this.todoList[index].text = newText;
-      this.saveTodos();
-  };
-
-  deleteTodo = (index) => {
-      this.todoList.splice(index, 1);
-      this.saveTodos();
-      this.renderTodos();
-  };
-
   renderTodos = () => {
-      this.todoContainer.innerHTML = '';
-      this.todoList.forEach((todo, index) => {
-          const listItem = document.createElement('div');
-          
-          if (todo.editable) {
-              const input = document.createElement('input');
-              input.type = 'text';
-              input.value = todo.text;
-              input.addEventListener('input', (e) => this.updateTodo(index, e.target.value));
-              listItem.appendChild(input);
-          } else {
-              listItem.textContent = todo.text;
-          }
-          
-          const editBtn = document.createElement('button');
-          editBtn.textContent = todo.editable ? 'Save' : 'Edit';
-          editBtn.addEventListener('click', () => this.toggleEdit(index));
-          
-          const deleteBtn = document.createElement('button');
-          deleteBtn.textContent = 'Delete';
-          deleteBtn.addEventListener('click', () => this.deleteTodo(index));
-          
-          listItem.appendChild(editBtn);
-          listItem.appendChild(deleteBtn);
-          this.todoContainer.appendChild(listItem);
+    this.todoContainer.innerHTML = '';
+
+    this.todoService.getTodos().forEach((todo, index) => {
+      const listItem = document.createElement('div');
+      listItem.className = 'list-item';
+
+      const listFirstChild = document.createElement('div');
+      const listSecondChild = document.createElement('div');
+      listItem.appendChild(listFirstChild);
+      listItem.appendChild(listSecondChild);
+
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = todo.isComplete;
+      checkbox.addEventListener('change', (e) => {
+        console.log(e.target.checked);
+        this.todoService.updateTodo({index, isComplete: e.target.checked})
+
+        this.renderTodos();
       });
+
+      listFirstChild.appendChild(checkbox);
+
+      if (todo.editable) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = todo.text;
+        input.addEventListener('input', (e) => {
+          this.todoService.updateTodo({index, newText: e.target.value})
+        });
+        
+        listFirstChild.appendChild(input);
+      } else {
+        const textSpan = document.createElement('span');
+        textSpan.textContent = todo.text;
+        textSpan.classList[todo.isComplete ? 'add' : 'remove']('checked');
+        listFirstChild.appendChild(textSpan);
+      }
+
+      const editButton = document.createElement('button');
+      editButton.textContent = todo.editable ? 'Save' : 'Edit';
+      editButton.addEventListener('click', () => {
+        this.todoService.toggleEdit(index);
+        this.renderTodos();
+      });
+      
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', () => {
+        this.todoService.deleteTodo(index);
+        this.renderTodos();
+      });
+      
+      listSecondChild.appendChild(editButton);
+      listSecondChild.appendChild(deleteButton);
+      this.todoContainer.appendChild(listItem);
+    });
   };
 }
 
