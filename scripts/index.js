@@ -10,11 +10,11 @@ class TodoApp {
   }
 
   addInputHandler = () => {
-    const existingInput = document.querySelector('.todo-input');
+    const todoInput = document.querySelector('.todo-input');
     
-    if (existingInput) {
-      const text = existingInput.value.trim();
-      existingInput.remove();
+    if (todoInput) {
+      const text = todoInput.value.trim();
+      todoInput.remove();
       this.addButton.textContent = 'ADD';
 
       if (text) {
@@ -40,6 +40,7 @@ class TodoApp {
     
     const handleKeydown = (e) => {
       if (e.key === 'Enter') {
+        todoInput.removeEventListener('input', handleKeydown);
         this.addInputHandler();
       } else if (e.key === 'Escape') {
         todoInput.remove();
