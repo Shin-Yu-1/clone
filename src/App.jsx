@@ -1,7 +1,16 @@
-import React from 'react';
+import { RouterProvider } from 'react-router-dom'
+import { router } from '@/router/index';
 
-const App = () => {
-  return <h1>Hello!</h1>;
-};
+import { ThemeProviderWrapper } from "@/store/ThemeContext";
+import GlobalStyle from '@/styles/globalStyle';
+
+function App() {
+  return (
+    <ThemeProviderWrapper>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </ThemeProviderWrapper>
+  )
+}
 
 export default App;

@@ -44,4 +44,5 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
+  devtool: "cheap-module-source-map",
 };
