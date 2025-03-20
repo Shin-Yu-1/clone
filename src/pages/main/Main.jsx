@@ -1,5 +1,6 @@
-import { useContext } from "react";
 import ThemeToggleSwitch from "@/components/ThemeToggleSwitch";
+import List from "@/components/List";
+import Add from "@/components/Add";
 
 export default function MainPage() {
   return (
@@ -8,6 +9,8 @@ export default function MainPage() {
       <div style={{ width: '60px',height: '25px'}}>
         <ThemeToggleSwitch />
       </div>
+      <Add />
+      <List />
       
     </>
   );
