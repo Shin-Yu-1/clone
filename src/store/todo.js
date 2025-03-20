@@ -21,6 +21,10 @@ export const todoSlice = createSlice({
       });
       saveTodos(state);
     },
+    todoReset: (state) => {
+      state = [];
+      saveTodos(state);
+    },
     todoRemoved: (state, action) => {
       const newState = state.filter(todo => todo.id !== action.payload.id);
       saveTodos(newState);
