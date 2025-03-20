@@ -7,8 +7,8 @@ export const ThemeContext = createContext();
 export const ThemeProviderWrapper = ({ children }) => {
   const [theme, setTheme] = useState("light");
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  const toggleTheme = (newTheme) => {
+    setTheme(newTheme);
   };
 
   return (

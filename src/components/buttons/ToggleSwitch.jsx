@@ -27,8 +27,14 @@ const HiddenCheckbox = styled.input`
 `;
 
 const ToggleSwitch = ({ checked, onChange }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    onChange(!checked);
+  };
+
   return (
-    <SwitchContainer checked={checked} onClick={() => onChange(!checked)} >
+    <SwitchContainer checked={checked} onClick={handleClick}>
       <HiddenCheckbox
         type="checkbox"
         checked={checked}

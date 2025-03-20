@@ -1,12 +1,21 @@
-import { useThemeToggle } from "@/hooks/useThemeToggle";
+import { useContext } from "react";
+import { ThemeContext } from "@/store/ThemeContext";
+import ToggleSwitch from "@/components/buttons/ToggleSwitch";
 
 const ThemeToggleSwitch = () => {
-  const { theme, toggleTheme } = useThemeToggle();
-  
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const handleToggle = () => {
+    toggleTheme(theme === "light" ? "dark" : "light"); 
+  };
+
   return (
-    <button onClick={toggleTheme}>
-      현재 테마: {theme}
-    </button>
+    <>
+      <ToggleSwitch
+        checked={theme !== "light"}
+        onChange={handleToggle}
+      />
+    </>
   );
 };
 
