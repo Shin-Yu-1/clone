@@ -5,7 +5,10 @@ export default function MainPage() {
   return (
     <>
       <h1>Toggle Theme</h1>
-      <ThemeToggleSwitch />
+      <div style={{ width: '60px',height: '25px'}}>
+        <ThemeToggleSwitch />
+      </div>
+      
     </>
   );
 }
