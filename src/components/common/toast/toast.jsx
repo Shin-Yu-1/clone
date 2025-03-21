@@ -12,12 +12,11 @@ const ToastWrapper = styled.div`
   position: fixed;
   bottom: 10px;
   right: 0;
-  transform: translateX(-50%);
+  transform: translateX(-10%);
   padding: 16px 20px;
   border-radius: 8px;
   background-color: ${({ type }) => toastColors[type].background};
   color: ${({ type }) => toastColors[type].color};
-  font-size: 16px;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -32,7 +31,6 @@ const CloseButton = styled.button`
   background: none;
   border: none;
   color: inherit;
-  font-size: 20px;
   cursor: pointer;
 `;
 
