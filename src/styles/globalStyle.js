@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
-    font-size: 62.5%;  // 10px = 1rem if user default is 16px
+    font-size: 62.5%;
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -17,7 +17,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-size: 1.6rem;  // This sets the default font size to 16px (1.6 * 10px)
+    font-size: 1.6rem;
+    font-family: 'Nanum Gothic Coding', monospace;
     background: ${(props) => props.theme.colors.background};
     color: ${(props) => props.theme.colors.text};
   }
