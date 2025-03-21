@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,13 +13,13 @@ const Label = styled.label`
 
 const StyledInput = styled.input`
   padding: 8px;
-  border: 1px solid ${(props) => (props.error ? "#ff4d4d" : "#ccc")};
+  border: 1px solid ${props => (props.error ? '#ff4d4d' : '#ccc')};
   border-radius: 4px;
   outline: none;
   transition: 0.2s;
 
   &:focus {
-    border-color: ${(props) => (props.error ? "#ff4d4d" : "#007bff")};
+    border-color: ${props => (props.error ? '#ff4d4d' : '#007bff')};
   }
 
   &:disabled {

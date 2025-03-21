@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const loadTodos = () => {
-  const savedTodos = localStorage.getItem("todos");
+  const savedTodos = localStorage.getItem('todos');
   return savedTodos ? JSON.parse(savedTodos) : [];
 };
 
-const saveTodos = (todos) => {
-  localStorage.setItem("todos", JSON.stringify(todos));
+const saveTodos = todos => {
+  localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 export const todoSlice = createSlice({
-  name: "todo",
+  name: 'todo',
   initialState: loadTodos(),
   reducers: {
     todoAdded: (state, action) => {
@@ -21,7 +21,7 @@ export const todoSlice = createSlice({
       });
       saveTodos(state);
     },
-    todoReset: (state) => {
+    todoReset: state => {
       state = [];
       saveTodos(state);
     },
@@ -38,7 +38,7 @@ export const todoSlice = createSlice({
         if (text !== undefined) {
           todo.text = text;
         }
-        
+
         if (completed !== undefined) {
           todo.completed = completed;
         }
@@ -56,7 +56,7 @@ export const todoSlice = createSlice({
 
       saveTodos(state);
     },
-  }
+  },
 });
 
 export const { todoAdded, todoChanged, todoRemoved } = todoSlice.actions;

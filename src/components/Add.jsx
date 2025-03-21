@@ -1,22 +1,21 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { todoAdded } from '@/store/todo';
-
-import Input from "@/components/elements/Input";
-import Button from "@/components/elements/Button";
+import Button from '@/components/elements/Button.jsx';
+import Input from '@/components/elements/Input.jsx';
+import { todoAdded } from '@/store/todo.js';
 
 const Add = ({ showToast }) => {
-  const [text, setText] = useState("");
-  const [inputVisible, setInputVisible] = useState(false); 
+  const [text, setText] = useState('');
+  const [inputVisible, setInputVisible] = useState(false);
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {
     if (text.trim()) {
       dispatch(todoAdded({ text }));
-      setText("");
+      setText('');
       setInputVisible(false);
-      showToast?.("할 일이 추가되었습니다", "success");
+      showToast?.('할 일이 추가되었습니다', 'success');
     }
   };
 
@@ -30,16 +29,16 @@ const Add = ({ showToast }) => {
             label=""
             type="text"
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={e => setText(e.target.value)}
             placeholder="Enter your todo"
-            error={text.length < 1 ? "Todo must be at least 1 characters" : ""}
-            onKeyDown={(e) => e.key === "Enter" && handleAddTodo()}
+            error={text.length < 1 ? 'Todo must be at least 1 characters' : ''}
+            onKeyDown={e => e.key === 'Enter' && handleAddTodo()}
           />
           <Button onClick={handleAddTodo}>SAVE</Button>
         </>
       )}
     </>
-  )
+  );
 };
 
 export default Add;

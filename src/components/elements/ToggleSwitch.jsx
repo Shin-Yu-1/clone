@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const SwitchContainer = styled.label`
   display: flex;
@@ -8,7 +8,7 @@ const SwitchContainer = styled.label`
   height: 100%;
   max-width: 50px;
   max-height: 26px;
-  background: ${({ checked }) => (checked ? "#4caf50" : "#ccc")};
+  background: ${({ checked }) => (checked ? '#4caf50' : '#ccc')};
   border-radius: 50px;
   position: relative;
   transition: background 0.3s ease-in-out;
@@ -23,8 +23,7 @@ const SwitchCircle = styled.span`
   background: white;
   border-radius: 50%;
   transition: transform 0.3s ease-in-out;
-  transform: ${({ checked }) =>
-    checked ? "translateX(100%)" : "translateX(2px)"};
+  transform: ${({ checked }) => (checked ? 'translateX(100%)' : 'translateX(2px)')};
 `;
 
 const HiddenCheckbox = styled.input`
@@ -32,7 +31,7 @@ const HiddenCheckbox = styled.input`
 `;
 
 const ToggleSwitch = ({ checked, onChange }) => {
-  const handleClick = (e) => {
+  const handleClick = e => {
     e.preventDefault();
 
     onChange(!checked);
@@ -40,11 +39,7 @@ const ToggleSwitch = ({ checked, onChange }) => {
 
   return (
     <SwitchContainer checked={checked} onClick={handleClick}>
-      <HiddenCheckbox
-        type="checkbox"
-        checked={checked}
-        readOnly
-      />
+      <HiddenCheckbox type="checkbox" checked={checked} readOnly />
       <SwitchCircle checked={checked} />
     </SwitchContainer>
   );

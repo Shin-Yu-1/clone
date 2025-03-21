@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CheckboxWrapper = styled.label`
   display: flex;
@@ -8,15 +8,15 @@ const CheckboxWrapper = styled.label`
   user-select: none;
 `;
 
-const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   display: none;
 `;
 
 const StyledCheckbox = styled.div`
   width: 20px;
   height: 20px;
-  border: 2px solid ${({ checked }) => (checked ? "#007BFF" : "#ccc")};
-  background-color: ${({ checked }) => (checked ? "#007BFF" : "transparent")};
+  border: 2px solid ${({ checked }) => (checked ? '#007BFF' : '#ccc')};
+  background-color: ${({ checked }) => (checked ? '#007BFF' : 'transparent')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,9 +24,9 @@ const StyledCheckbox = styled.div`
   transition: all 0.2s;
 
   &:after {
-    content: "✔";
+    content: '✔';
     color: white;
-    display: ${({ checked }) => (checked ? "block" : "none")};
+    display: ${({ checked }) => (checked ? 'block' : 'none')};
   }
 `;
 

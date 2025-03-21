@@ -1,19 +1,19 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from 'react';
 
 // type: 'info' | 'success' | 'error' | 'warning'
 const useToast = ({ autoClose = true, duration = 3000 } = {}) => {
   const [toast, setToast] = useState({
-    message: "",
-    type: "info",
+    message: '',
+    type: 'info',
     show: false,
   });
 
-  const showToast = useCallback((message, type = "info") => {
+  const showToast = useCallback((message, type = 'info') => {
     setToast({ message, type, show: true });
   }, []);
 
   const hideToast = useCallback(() => {
-    setToast((prev) => ({ ...prev, show: false }));
+    setToast(prev => ({ ...prev, show: false }));
   }, []);
 
   useEffect(() => {

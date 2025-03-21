@@ -1,8 +1,12 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
   mode: 'development',
   entry: './src/index.jsx',
   output: {
@@ -44,5 +48,5 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-  devtool: "cheap-module-source-map",
+  devtool: 'cheap-module-source-map',
 };

@@ -19,8 +19,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 1.6rem;
     font-family: 'Nanum Gothic Coding', monospace;
-    background: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.text};
+    background: ${props => props.theme.colors.background};
+    color: ${props => props.theme.colors.text};
   }
 
   :lang(ko) {
