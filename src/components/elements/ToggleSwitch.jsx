@@ -1,4 +1,8 @@
-import { SwitchContainer, SwitchCircle, HiddenCheckbox } from '@/components/elements/Input.styles';
+import {
+  SwitchContainer,
+  SwitchCircle,
+  HiddenCheckbox,
+} from '@/components/elements/ToggleSwitch.styles';
 
 const ToggleSwitch = ({ checked, onChange }) => {
   const handleClick = e => {

@@ -15,7 +15,13 @@ const DraggableItem = styled.li`
   cursor: grab;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
+
+  div {
+    display: flex;
+    gap: 10px;
+  }
 `;
 
 const TodoText = styled.span`
@@ -49,18 +55,20 @@ const TodoItem = ({ todo, index, handleDragStart, handleDragOver, handleDrop }) 
           onKeyDown={e => e.key === 'Enter' && handleEdit()}
         />
       ) : (
-        <>
+        <div>
           <Checkbox
             checked={todo.completed}
             onChange={() => dispatch(todoChanged({ id: todo.id, completed: !todo.completed }))}
           />
           <TodoText completed={todo.completed}>{todo.text}</TodoText>
-        </>
+        </div>
       )}
-      <Button onClick={handleEdit}>{editable ? 'SAVE' : 'EDIT'}</Button>
-      <Button onClick={() => dispatch(todoRemoved({ id: todo.id }))} backgroundColor={'red'}>
-        DELETE
-      </Button>
+      <div>
+        <Button onClick={handleEdit}>{editable ? 'SAVE' : 'EDIT'}</Button>
+        <Button onClick={() => dispatch(todoRemoved({ id: todo.id }))} backgroundColor={'red'}>
+          DELETE
+        </Button>
+      </div>
     </DraggableItem>
   );
 };
