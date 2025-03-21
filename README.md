@@ -8,6 +8,7 @@
 - **할 일 수정**: `Edit` 버튼을 클릭하면 해당 항목을 편집할 수 있습니다.
 - **할 일 삭제**: `Delete` 버튼을 클릭하면 항목이 제거됩니다.
 - **데이터 저장**: `localStorage`에 저장되어 새로고침 후에도 데이터가 유지됩니다.
+- **Drag & Drop 순서 변경**: `Drag & Drop`으로 리스트 순서를 변경할 수 있습니다.
 
 ## 🛠️ 기술 스택
 - **React** – UI 컴포넌트 구성
@@ -20,10 +21,13 @@
 ```
 /src
 ├── components
+│ ├── common
+│ │ ├── toast.jsx
 │ ├── elements
 │ │ ├── Button.jsx # 재사용 가능한 버튼 컴포넌트
-│ │ ├── Input.jsx # 재사용 가능한 입력 필드 컴포넌트
 │ │ ├── Checkbox.jsx # 재사용 가능한 체크박스 컴포넌트
+│ │ ├── Input.jsx # 재사용 가능한 입력 필드 컴포넌트
+│ │ ├── ToggleSwitch.jsx # 재사용 가능한 스위치 컴포넌트
 │ ├── Add.jsx # Todo 추가 입력창
 │ ├── List.jsx  # Todo 리스트
 │ ├── ThemeToggleSwitch.jsx  # Theme 변경
