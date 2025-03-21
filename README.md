@@ -25,9 +25,13 @@
 │ │ ├── toast.jsx
 │ ├── elements
 │ │ ├── Button.jsx # 재사용 가능한 버튼 컴포넌트
+│ │ ├── Button.styles.js
 │ │ ├── Checkbox.jsx # 재사용 가능한 체크박스 컴포넌트
+│ │ ├── Checkbox.styles.js
 │ │ ├── Input.jsx # 재사용 가능한 입력 필드 컴포넌트
+│ │ ├── Input.styles.js
 │ │ ├── ToggleSwitch.jsx # 재사용 가능한 스위치 컴포넌트
+│ │ ├── ToggleSwitch.styles.js
 │ ├── Add.jsx # Todo 추가 입력창
 │ ├── List.jsx  # Todo 리스트
 │ ├── ThemeToggleSwitch.jsx  # Theme 변경
