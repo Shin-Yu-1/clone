@@ -22,7 +22,7 @@ const Add = ({ showToast }) => {
   return (
     <>
       {!inputVisible ? (
-        <Button onClick={() => setInputVisible(true)}>ADD</Button>
+        <Button onClick={() => setInputVisible(true)} backgroundColor={'green'} >ADD</Button>
       ) : (
         <>
           <Input

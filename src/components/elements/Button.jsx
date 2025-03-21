@@ -7,12 +7,14 @@ const StyledButton = styled.button`
   cursor: pointer;
   transition: 0.2s;
 
-  background: ${props => (props.variant === 'outline' ? 'transparent' : '#007bff')};
-  color: ${props => (props.variant === 'outline' ? '#007bff' : '#fff')};
+  background: ${({ variant, backgroundColor }) =>
+    variant === 'outline' ? 'transparent' : backgroundColor || '#007bff'};
+  color: ${({ variant, color }) => (variant === 'outline' ? color || '#007bff' : '#fff')};
   border: ${props => (props.variant === 'outline' ? '2px solid #007bff' : 'none')};
 
   &:hover {
-    background: ${props => (props.variant === 'outline' ? '#007bff' : '#0056b3')};
+    background: ${({ variant, hoverBgColor }) =>
+      variant === 'outline' ? hoverBgColor || '#007bff' : hoverBgColor || '#0056b3'};
     color: #fff;
   }
 

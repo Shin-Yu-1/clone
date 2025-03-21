@@ -1,26 +1,9 @@
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 
-import Button from '@/components/elements/Button.jsx';
-import Checkbox from '@/components/elements/Checkbox.jsx';
-import { todoRemoved, todoChanged, todoReordered } from '@/store/todo.js';
+import { todoReordered } from '@/store/todo.js';
 
-const TodoText = styled.span`
-  color: ${({ completed }) => (completed ? '#999' : '#000')}; /* 완료되면 회색 */
-  text-decoration: ${({ completed }) => (completed ? 'line-through' : 'none')}; /* ✅ 취소선 */
-  font-size: 1.6rem;
-  margin: 0 10px;
-`;
-
-const DraggableItem = styled.li`
-  padding: 10px;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  background: #f9f9f9;
-  cursor: grab;
-`;
-
+import TodoItem from './TodoItem.jsx';
 
 const List = () => {
   const todos = useSelector(state => state.todo);
@@ -32,7 +15,7 @@ const List = () => {
   };
 
   const handleDragOver = e => {
-    e.preventDefault(); // 반드시 필요 (drop 이벤트가 발생하게 함)
+    e.preventDefault();
   };
 
   const handleDrop = index => {
@@ -49,20 +32,14 @@ const List = () => {
   return (
     <ul>
       {todos.map((todo, index) => (
-        <DraggableItem
+        <TodoItem
           key={todo.id}
-          draggable
-          onDragStart={() => handleDragStart(index)}
-          onDragOver={handleDragOver}
-          onDrop={() => handleDrop(index)}
-        >
-          <Checkbox
-            checked={todo.completed}
-            onChange={() => dispatch(todoChanged({ id: todo.id, completed: !todo.completed }))}
-          />
-          <TodoText completed={todo.completed}>{todo.text}</TodoText>
-          <Button onClick={() => dispatch(todoRemoved({ id: todo.id }))}>DELETE</Button>
-        </DraggableItem>
+          todo={todo}
+          index={index}
+          handleDragStart={handleDragStart}
+          handleDragOver={handleDragOver}
+          handleDrop={handleDrop}
+        />
       ))}
     </ul>
   );
