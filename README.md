@@ -1,6 +1,6 @@
 # 📌 Todo App
 
-**React + Redux Toolkit + localStorage** 기반의 간단한 **Todo List** 프로젝트입니다.
+**React + Redux Toolkit + Styled Component + localStorage** 기반의 간단한 **Todo List** 프로젝트입니다.
 
 ## 🚀 주요 기능
 - **할 일 추가**: `ADD` 버튼을 눌러 입력 창을 띄우고 새로운 할 일을 추가할 수 있습니다.
