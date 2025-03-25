@@ -2,9 +2,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const env = dotenv.config().parsed || {};
+const envKeys = Object.fromEntries(
+  Object.entries(env).map(([key, val]) => [`process.env.${key}`, JSON.stringify(val)])
+);
 
 export default {
   mode: 'development',
@@ -40,9 +46,7 @@ export default {
       template: './public/index.html',
     }),
     new CleanWebpackPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(env),
-    }),
+    new webpack.DefinePlugin(envKeys),
   ],
   devServer: {
     static: path.resolve(__dirname, 'dist'),

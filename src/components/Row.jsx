@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import axios from '@/api/axios';
+import { requests } from '@/api/requests.js';
 import MovieModal from '@/components/modal/MovieModal';
-import { requests } from '@/constant/requests';
 
 import '@/components/Row.css';
 
@@ -13,7 +14,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Row = () => {
+const Row = ({ isLargeRow, title, id, fetchUrl }) => {
   const [movies, setMovies] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [movieSelected, setMovieSelected] = useState({});
@@ -57,8 +58,8 @@ const Row = () => {
             slidesPerGroup: 3,
           },
         }}
-        navigation // arrow 버튼 사용 유무
-        pagination={{ clickable: true }} // 페이지 버튼 보이게 할지
+        navigation
+        pagination={{ clickable: true }}
       >
         <div id={id} className="row__posters">
           {movies.map(movie => (
