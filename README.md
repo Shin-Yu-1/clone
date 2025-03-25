@@ -51,4 +51,10 @@ TMDB API를 활용하여 인기 콘텐츠를 슬라이드로 보여주고, 검�
 4. 개발 서버 실행
    ```sh
    pnpm start
-   ```   
+   ```
+
+## 📸 UI 스크린샷
+![image](https://github.com/user-attachments/assets/3cb2db4b-8f6a-4098-b3fe-6f10c270ca28)
+![image](https://github.com/user-attachments/assets/94236674-8c75-47a4-87ba-16d47ad54ea3)
+![image](https://github.com/user-attachments/assets/141ffcb6-d805-43e7-be06-bff0bc250639)
+
