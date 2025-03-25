@@ -40,6 +40,9 @@ export default {
       template: './public/index.html',
     }),
     new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(env),
+    }),
   ],
   devServer: {
     static: path.resolve(__dirname, 'dist'),
