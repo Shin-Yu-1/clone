@@ -115,5 +115,5 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-`,Tc=function(){return(0,Ia.jsxs)(Ta,{theme:kc,children:[(0,Ia.jsx)(Bc,{}),(0,Ia.jsx)(Vt,{router:xc})]})};var Pc=n(588),_c={};_c.styleTagTransform=ii(),_c.setAttributes=ti(),_c.insert=Ja().bind(null,"head"),_c.domAPI=Ka(),_c.insertStyleElement=ri(),Qa()(Pc.A,_c),Pc.A&&Pc.A.locals&&Pc.A.locals,a.createRoot(document.getElementById("root")).render((0,Ia.jsx)(Ia.Fragment,{children:(0,Ia.jsx)(jt,{basename:"clone/tree/feat/netflix_react",children:(0,Ia.jsx)(Tc,{})})}))})()})();
+`,Tc=function(){return(0,Ia.jsxs)(Ta,{theme:kc,children:[(0,Ia.jsx)(Bc,{}),(0,Ia.jsx)(Vt,{router:xc})]})};var Pc=n(588),_c={};_c.styleTagTransform=ii(),_c.setAttributes=ti(),_c.insert=Ja().bind(null,"head"),_c.domAPI=Ka(),_c.insertStyleElement=ri(),Qa()(Pc.A,_c),Pc.A&&Pc.A.locals&&Pc.A.locals,a.createRoot(document.getElementById("root")).render((0,Ia.jsx)(Ia.Fragment,{children:(0,Ia.jsx)(jt,{basename:"clone",children:(0,Ia.jsx)(Tc,{})})}))})()})();
 //# sourceMappingURL=bundle.js.map
