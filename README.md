@@ -12,7 +12,7 @@
 - 개발 브랜치
 
 ### 3. `feat/netflix`
-- **Netflix Clone Project**
+- **Netflix Clone**
 - 사용 기술: **HTML5, CSS, JavaScript**
 - Netflix의 기본 UI를 클론한 프로젝트로, 프론트엔드 디자인과 레이아웃을 중심으로 구현됨.
 
@@ -25,6 +25,11 @@
 - **React 기반 Todo List App**
 - 사용 기술: **React**
 - 기존 `feat/todo` 프로젝트를 React를 사용하여 리팩토링한 버전으로, 컴포넌트 기반 UI와 상태 관리를 활용하여 더 나은 사용자 경험을 제공.
+
+### 6. `feat/youtube`
+- **YouTube Clone**
+- 사용 기술: **HTML5, CSS, JavaScript**
+- YouTube의 기본 UI를 클론한 프로젝트로, 프론트엔드 디자인과 레이아웃을 중심으로 구현됨.
 
 ## 프로젝트 실행 방법
 각 브랜치에서 프로젝트를 실행하는 방법은 해당 브랜치의 README를 참고하세요.
