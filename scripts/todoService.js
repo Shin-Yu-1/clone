@@ -7,9 +7,9 @@ export class TodoService {
 
   saveTodos = () => localStorage.setItem('todos', JSON.stringify(this.todos));
 
-  addTodo = (text) => {
-    this.todos.push({ text, editable: false, isComplete: false });
-    this.saveTodos;
+  addTodo = ({text, priority}) => {
+    this.todos.push({ text, editable: false, priority, isComplete: false, saveAt: new Date().getTime() });
+    this.saveTodos();
   }
 
   toggleEdit = (index) => {
@@ -17,13 +17,17 @@ export class TodoService {
     this.saveTodos();
   }
 
-  updateTodo = ({ index, newText, isComplete }) => {
+  updateTodo = ({ index, newText, priority, isComplete }) => {
     if (newText) {
       this.todos[index].text = newText;
     }
 
     if (isComplete !== undefined) {
       this.todos[index].isComplete = isComplete;
+    }
+
+    if (priority !== undefined) {
+      this.todos[index].priority = priority;
     }
 
     this.saveTodos();
