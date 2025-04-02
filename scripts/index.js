@@ -113,6 +113,4 @@ class TodoApp {
   };
 }
 
-
-
 document.addEventListener("DOMContentLoaded", new TodoApp());
