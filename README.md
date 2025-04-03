@@ -19,14 +19,16 @@
 ```
 /todo-app
 │── /styles
-│   ├── reset.css          # 기본 스타일 초기화
-│   ├── styles.css         # Todo App 스타일링
+│   ├── reset.css          # 브라우저 기본 스타일 초기화
+│   ├── styles.css         # Todo 앱의 전반적인 UI 스타일 정의
 │
 │── /scripts
-│   ├── todoService.js     # 데이터 관리 (비즈니스 로직 분리)
-│   ├── index.js           # 앱 초기화, UI 이벤트 및 렌더링 처리
+│   ├── index.js           # 앱의 진입점. TodoApp 초기화 및 이벤트 흐름 관리
+│   ├── todoService.js     # Todo 데이터 저장 및 처리 (비즈니스 로직)
+│   ├── todoRenderer.js    # Todo 목록 렌더링 담당 (UI 그리기)
+│   ├── todoBinder.js      # Todo 항목에 대한 이벤트 바인딩/해제 처리
 │
-│── index.html             # 메인 HTML 파일
+│── index.html             # 메인 HTML 파일.
 │── README.md              # 프로젝트 설명
 ```
 
