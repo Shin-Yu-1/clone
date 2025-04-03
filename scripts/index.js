@@ -8,15 +8,15 @@ class TodoApp {
 
     this.service = new TodoService();
     this.renderer = new TodoRenderer(this.container);
-    this.binder = new EventBinder(
-      this.renderer.renderTodos(this.todos),
-      this.todoService,
-      this.renderTodos
-    );
 
 
     this.addButton = document.querySelector('[name="add-button"]');
     this.addButton.addEventListener('click', this.addInputHandler);
+
+    this.binder = new EventBinder(
+      this.service,
+      this.renderTodos
+    );
 
     this.renderTodos();
   }
