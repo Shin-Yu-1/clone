@@ -68,6 +68,8 @@ class TodoApp {
   };
 
   renderTodos = () => {
+    this.binder.removeEvents();
+
     const listItem = this.renderer.renderTodos(this.todos);
     this.binder.bindTodoEvents(listItem);
   };
