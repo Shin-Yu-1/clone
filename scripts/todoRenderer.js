@@ -9,11 +9,8 @@ export class TodoRenderer {
     if (option) {
       for (const [key, value] of Object.entries(option)) {
         if (key === 'classList' && typeof value === 'object') {
-          for (const [method, classNames] of Object.entries(value)) {
-            if (Array.isArray(classNames) && typeof element.classList[method] === 'function') {
-              element.classList[method](...classNames);
-            }
-          }
+          const {method, className} = value;
+          element.classList[method](...className);
         } else {
           element[key] = value;
         }
@@ -40,7 +37,7 @@ export class TodoRenderer {
       if (todo.editable) {
         textItem = this.getElement('input', listFirstChild, {type: 'text', value: todo.text, className: 'todo-edit-input'});
       } else {
-        textItem = this.getElement('span', listFirstChild, {textContent: todo.text, classList: { add: ['checked'], remove: ['checked'] }})
+        textItem = this.getElement('span', listFirstChild, {textContent: todo.text, classList: { method: todo.isComplete ? 'add' : 'remove', className: ['checked'] }})
       }
 
       const editButton = this.getElement('button', listSecondChild, {textContent: todo.editable ? 'Save' : 'Edit', className: 'edit-button'});
