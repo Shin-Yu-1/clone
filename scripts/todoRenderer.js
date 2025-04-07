@@ -8,8 +8,8 @@ export class TodoRenderer {
 
     if (option) {
       for (const [key, value] of Object.entries(option)) {
-        if (key === 'classList' && typeof value === 'object') {
-          const {method, className} = value;
+        if (key === "classList" && typeof value === "object") {
+          const { method, className } = value;
           element.classList[method](...className);
         } else {
           element[key] = value;
@@ -22,26 +22,49 @@ export class TodoRenderer {
     }
 
     return element;
-  }
+  };
 
   renderTodos = (todos) => {
-    this.container.innerHTML = '';
+    this.container.innerHTML = "";
 
     return todos.map((todo, index) => {
-      const listItem = this.getElement('div', this.container, {className: 'list-item'});
-      const listFirstChild = this.getElement('div', listItem);
-      const listSecondChild = this.getElement('div', listItem);
-      const checkbox = this.getElement('input', listFirstChild, {type: 'checkbox', checked: todo.isComplete, className: 'todo-checkbox'});
+      const listItem = this.getElement("div", this.container, {
+        className: "list-item",
+        dataset: { index },
+      });
+      const listFirstChild = this.getElement("div", listItem);
+      const listSecondChild = this.getElement("div", listItem);
+      const checkbox = this.getElement("input", listFirstChild, {
+        type: "checkbox",
+        checked: todo.isComplete,
+        className: "todo-checkbox",
+      });
       let textItem = null;
 
       if (todo.editable) {
-        textItem = this.getElement('input', listFirstChild, {type: 'text', value: todo.text, className: 'todo-edit-input'});
+        textItem = this.getElement("input", listFirstChild, {
+          type: "text",
+          value: todo.text,
+          className: "todo-edit-input",
+        });
       } else {
-        textItem = this.getElement('span', listFirstChild, {textContent: todo.text, classList: { method: todo.isComplete ? 'add' : 'remove', className: ['checked'] }})
+        textItem = this.getElement("span", listFirstChild, {
+          textContent: todo.text,
+          classList: {
+            method: todo.isComplete ? "add" : "remove",
+            className: ["checked"],
+          },
+        });
       }
 
-      const editButton = this.getElement('button', listSecondChild, {textContent: todo.editable ? 'Save' : 'Edit', className: 'edit-button'});
-      const deleteButton = this.getElement('button', listSecondChild, {textContent: 'Delete', className: 'delete-button'});
+      const editButton = this.getElement("button", listSecondChild, {
+        textContent: todo.editable ? "Save" : "Edit",
+        className: "edit-button",
+      });
+      const deleteButton = this.getElement("button", listSecondChild, {
+        textContent: "Delete",
+        className: "delete-button",
+      });
 
       return {
         checkbox,
@@ -49,8 +72,8 @@ export class TodoRenderer {
         deleteButton,
         textItem,
         listItem,
-        index
-      }
+        index,
+      };
     });
-  }
+  };
 }
