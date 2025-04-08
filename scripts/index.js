@@ -10,6 +10,7 @@ class TodoApp {
     this.renderer = new TodoRenderer(this.container);
 
     this.addButton = document.querySelector('[name="add-button"]');
+    this.addInputHandler = this.addInputHandler.bind(this);
     this.addButton.addEventListener("click", this.addInputHandler);
 
     this.binder = new EventBinder(
@@ -39,6 +40,7 @@ class TodoApp {
 
       this.renderTodos();
     } else {
+      console.log(this);
       this.showInput();
     }
   }
