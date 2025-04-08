@@ -10,12 +10,11 @@ class TodoApp {
     this.renderer = new TodoRenderer(this.container);
 
     this.addButton = document.querySelector('[name="add-button"]');
-    this.addInputHandler = this.addInputHandler.bind(this);
-    this.addButton.addEventListener("click", this.addInputHandler);
+    this.addButton.addEventListener("click", this.addInputHandler.bind(this));
 
     this.binder = new EventBinder(
       this.service,
-      this.renderTodos,
+      this.renderTodos.bind(this),
       this.container
     );
 
