@@ -68,7 +68,6 @@ class TodoApp {
   };
 
   renderTodos = () => {
-    console.log("renderTodos");
     this.renderer.renderTodos(this.todos);
     this.binder.bindTest();
   };
