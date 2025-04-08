@@ -11,13 +11,13 @@ export class TodoService {
     return localStorage.setItem("todos", JSON.stringify(this.todos));
   }
 
-  addTodo({ text, priority }) {
+  addTodo({ text, priority, saveDate }) {
     this.todos.push({
       text,
       editable: false,
       priority,
       isComplete: false,
-      saveAt: new Date().getTime(),
+      saveDate,
     });
     this.saveTodos();
   }
