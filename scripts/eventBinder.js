@@ -1,48 +1,39 @@
 export class EventBinder {
-  constructor(service, onUpdateUI) {
+  constructor(service, renderTodos, container) {
     this.service = service;
-    this.onUpdateUI = onUpdateUI;
-    this.listItems = null;
+    this.onUpdateUI = renderTodos;
+    this.container = container;
   }
 
-  handleCheckbox = (e) => {
-    const index = this.listItems.findIndex(item => item.checkbox === e.target);
-    this.service.updateTodo({index, isComplete: e.target.checked})
+  bindTest = () => {
+    this.container.addEventListener("click", (e) => {
+      const listItem = e.target.closest(".list-item");
+      const index = Array.from(this.container.children).indexOf(listItem);
 
-    this.onUpdateUI();
-  }
+      if (e.target.closest(".edit-button") && Boolean(index)) {
+        const todo = this.service.getTodos();
+        this.service.toggleEdit(index);
 
-  handleButton = (e) => {
-    const index = this.listItems.findIndex(
-      item => item.editButton === e.target || item.deleteButton === e.target
-    );
-    
-    if (e.target.matches('.edit-button')) {
-      this.service.toggleEdit(index);
-      this.onUpdateUI();
-    }
+        if (todo[index] && !todo[index].editable) {
+          const textItem = listItem.querySelector(".todo-edit-input");
+          const newText = textItem.value.trim();
 
-    if (e.target.matches('.delete-button')) {
-      this.service.deleteTodo(index);
-      this.onUpdateUI();
-    }
-  }
+          this.service.updateTodo({ index, newText });
+        }
 
-  bindTodoEvents = (listItems) => {
-    this.listItems = listItems;
+        this.onUpdateUI();
+      }
 
-    listItems.forEach(({checkbox, editButton, deleteButton, textItem}) => {
-      checkbox.addEventListener('change', this.handleCheckbox);
-      editButton.addEventListener('click', this.handleButton);
-      deleteButton.addEventListener('click', this.handleButton);
+      if (e.target.closest(".delete-button")) {
+        this.service.deleteTodo(index);
+        this.onUpdateUI();
+      }
+
+      if (e.target.closest(".todo-checkbox")) {
+        this.service.updateTodo({ index, isComplete: e.target.checked });
+
+        this.onUpdateUI();
+      }
     });
   };
-
-  removeEvents = () => {
-    if (this.listItems) {
-      this.listItems.forEach(({checkbox, editButton, deleteButton, textItem}, index) => {
-        checkbox.removeEventListener('change', this.handleCheckbox);
-      });
-    }
-  }
 }

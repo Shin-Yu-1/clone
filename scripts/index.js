@@ -4,18 +4,18 @@ import { EventBinder } from "./eventBinder.js";
 
 class TodoApp {
   constructor() {
-    this.container = document.getElementById('list');
+    this.container = document.getElementById("list");
 
     this.service = new TodoService();
     this.renderer = new TodoRenderer(this.container);
 
-
     this.addButton = document.querySelector('[name="add-button"]');
-    this.addButton.addEventListener('click', this.addInputHandler);
+    this.addButton.addEventListener("click", this.addInputHandler);
 
     this.binder = new EventBinder(
       this.service,
-      this.renderTodos
+      this.renderTodos,
+      this.container
     );
 
     this.renderTodos();
@@ -26,15 +26,15 @@ class TodoApp {
   }
 
   addInputHandler = () => {
-    const todoInput = document.querySelector('.todo-input');
+    const todoInput = document.querySelector(".todo-input");
 
     if (todoInput) {
       const text = todoInput.value.trim();
       todoInput.remove();
-      this.addButton.textContent = 'ADD';
+      this.addButton.textContent = "ADD";
 
       if (text) {
-        this.service.addTodo({text});
+        this.service.addTodo({ text });
       }
 
       this.renderTodos();
@@ -44,34 +44,33 @@ class TodoApp {
   };
 
   showInput = () => {
-    this.addButton.textContent = 'SAVE';
+    this.addButton.textContent = "SAVE";
 
-    const todoInput = document.createElement('input');
-    todoInput.type = 'text';
-    todoInput.placeholder = '할 일 입력';
-    todoInput.classList.add('todo-input');
+    const todoInput = document.createElement("input");
+    todoInput.type = "text";
+    todoInput.placeholder = "할 일 입력";
+    todoInput.classList.add("todo-input");
 
     this.addButton.parentNode.insertBefore(todoInput, this.addButton);
     todoInput.focus();
 
     const handleKeydown = (e) => {
-      if (e.key === 'Enter') {
-        todoInput.removeEventListener('keydown', handleKeydown);
+      if (e.key === "Enter") {
+        todoInput.removeEventListener("keydown", handleKeydown);
         this.addInputHandler();
-      } else if (e.key === 'Escape') {
+      } else if (e.key === "Escape") {
         todoInput.remove();
-        this.addButton.textContent = 'ADD';
+        this.addButton.textContent = "ADD";
       }
     };
 
-    todoInput.addEventListener('keydown', handleKeydown);
+    todoInput.addEventListener("keydown", handleKeydown);
   };
 
   renderTodos = () => {
-    this.binder.removeEvents();
-
-    const listItem = this.renderer.renderTodos(this.todos);
-    this.binder.bindTodoEvents(listItem);
+    console.log("renderTodos");
+    this.renderer.renderTodos(this.todos);
+    this.binder.bindTest();
   };
 }
 

@@ -1,21 +1,29 @@
 export class TodoService {
   constructor() {
-    this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+    this.todos = JSON.parse(localStorage.getItem("todos")) || [];
   }
 
   getTodos = () => this.todos;
 
-  saveTodos = () => localStorage.setItem('todos', JSON.stringify(this.todos));
+  saveTodos = () => localStorage.setItem("todos", JSON.stringify(this.todos));
 
-  addTodo = ({text, priority}) => {
-    this.todos.push({ text, editable: false, priority, isComplete: false, saveAt: new Date().getTime() });
+  addTodo = ({ text, priority }) => {
+    this.todos.push({
+      text,
+      editable: false,
+      priority,
+      isComplete: false,
+      saveAt: new Date().getTime(),
+    });
     this.saveTodos();
-  }
+  };
 
   toggleEdit = (index) => {
-    this.todos[index].editable = !this.todos[index].editable;
-    this.saveTodos();
-  }
+    if (this.todos[index]) {
+      this.todos[index].editable = !this.todos[index].editable;
+      this.saveTodos();
+    }
+  };
 
   updateTodo = ({ index, newText, priority, isComplete }) => {
     if (newText) {
@@ -31,10 +39,10 @@ export class TodoService {
     }
 
     this.saveTodos();
-  }
+  };
 
   deleteTodo = (index) => {
     this.todos.splice(index, 1);
     this.saveTodos();
-  }
+  };
 }
