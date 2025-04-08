@@ -5,14 +5,12 @@ export class EventBinder {
     this.container = container;
   }
 
-  bindTodoEvents = () => {
+  bindTodoEvents() {
     this.container.addEventListener("click", (e) => {
       const listItem = e.target.closest(".list-item");
       const index = Array.from(this.container.children).indexOf(listItem);
 
-      if (index < 0) {
-        return;
-      }
+      if (index < 0) return;
 
       if (e.target.closest(".edit-button")) {
         const todo = this.service.getTodos();
@@ -39,5 +37,5 @@ export class EventBinder {
         this.onUpdateUI();
       }
     });
-  };
+  }
 }

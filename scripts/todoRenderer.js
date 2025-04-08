@@ -3,7 +3,7 @@ export class TodoRenderer {
     this.container = container;
   }
 
-  getElement = (type, parent = null, option = null) => {
+  getElement(type, parent = null, option = null) {
     const element = document.createElement(type);
 
     if (option) {
@@ -22,9 +22,9 @@ export class TodoRenderer {
     }
 
     return element;
-  };
+  }
 
-  renderTodos = (todos) => {
+  renderTodos(todos) {
     this.container.innerHTML = "";
 
     return todos.map((todo, index) => {
@@ -74,5 +74,5 @@ export class TodoRenderer {
         index,
       };
     });
-  };
+  }
 }

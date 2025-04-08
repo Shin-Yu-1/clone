@@ -25,7 +25,7 @@ class TodoApp {
     return this.service.getTodos();
   }
 
-  addInputHandler = () => {
+  addInputHandler() {
     const todoInput = document.querySelector(".todo-input");
 
     if (todoInput) {
@@ -41,9 +41,9 @@ class TodoApp {
     } else {
       this.showInput();
     }
-  };
+  }
 
-  showInput = () => {
+  showInput() {
     this.addButton.textContent = "SAVE";
 
     const todoInput = document.createElement("input");
@@ -65,12 +65,12 @@ class TodoApp {
     };
 
     todoInput.addEventListener("keydown", handleKeydown);
-  };
+  }
 
-  renderTodos = () => {
+  renderTodos() {
     this.renderer.renderTodos(this.todos);
     this.binder.bindTodoEvents();
-  };
+  }
 }
 
 document.addEventListener("DOMContentLoaded", new TodoApp());
