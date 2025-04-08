@@ -5,12 +5,16 @@ export class EventBinder {
     this.container = container;
   }
 
-  bindTest = () => {
+  bindTodoEvents = () => {
     this.container.addEventListener("click", (e) => {
       const listItem = e.target.closest(".list-item");
       const index = Array.from(this.container.children).indexOf(listItem);
 
-      if (e.target.closest(".edit-button") && Boolean(index)) {
+      if (index < 0) {
+        return;
+      }
+
+      if (e.target.closest(".edit-button")) {
         const todo = this.service.getTodos();
         this.service.toggleEdit(index);
 
