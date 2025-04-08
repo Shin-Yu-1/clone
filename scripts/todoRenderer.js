@@ -30,9 +30,6 @@ export class TodoRenderer {
     return todos.map((todo, index) => {
       const listItem = this.getElement("div", this.container, {
         className: "list-item",
-        dataset: {
-          key: index,
-        },
       });
       const listFirstChild = this.getElement("div", listItem);
       const listSecondChild = this.getElement("div", listItem);
