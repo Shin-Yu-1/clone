@@ -19,15 +19,11 @@ const Row = ({ isLargeRow, title, id, fetchUrl }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [movieSelected, setMovieSelected] = useState({});
 
-  useEffect(() => {
-    fetchMovieData();
-  }, []);
-
-  const fetchMovieData = async () => {
+  useEffect(async () => {
     const request = await axios.get(fetchUrl);
     console.log('request', request);
     setMovies(request.data.results);
-  };
+  }, []);
 
   const handleClick = movie => {
     setModalOpen(true);

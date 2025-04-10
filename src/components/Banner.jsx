@@ -41,11 +41,7 @@ const Banner = () => {
   const [movie, setMovie] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  useEffect(async () => {
     const request = await axios.get(requests.fetchNowPlaying);
 
     const movieId =
@@ -55,7 +51,7 @@ const Banner = () => {
       params: { append_to_response: 'videos' },
     });
     setMovie(movieDetail);
-  };
+  }, []);
 
   const truncate = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + '...' : str;
