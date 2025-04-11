@@ -1,0 +1,214 @@
+/* 공통 스타일 */
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: visible !important;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+:lang(ko) h1,
+:lang(ko) h2,
+:lang(ko) h3 {
+  word-break: keep-all;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 레이아웃 구조 */
+.layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  background: red;
+}
+
+.main {
+  width: 100%;
+  max-width: 630px;
+  background: lightpink;
+}
+
+.sub {
+  width: 319px;
+  height: 100vh;
+  padding-left: 64px;
+  background: lightcoral;
+}
+
+.sidebar {
+  background: green;
+}
+
+.header {
+  background: yellow;
+}
+
+.tab-bar {
+  background: skyblue;
+}
+
+/* ────────────────────────────── */
+/* Mobile: 0 ~ 471 & 472 ~ 752px */
+@media (max-width: 471px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1;
+  }
+
+  .section {
+    position: relative;
+    top: 60px;
+    height: 1000px;
+    justify-content: center;
+  }
+  .main {
+    width: 100%;
+    max-width: none;
+  }
+
+  .sub,
+  .sidebar {
+    display: none;
+  }
+
+  .tab-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    z-index: 2;
+  }
+}
+
+@media (min-width: 472px) and (max-width: 752px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1;
+  }
+
+  .section {
+    position: relative;
+    top: 60px;
+    height: 1000px;
+    justify-content: center;
+  }
+
+  .sub,
+  .sidebar {
+    display: none;
+  }
+
+  .tab-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    z-index: 2;
+  }
+}
+
+/* Tablet: 753px ~ 1144px */
+@media (min-width: 753px) and (max-width: 1144px) {
+  .header,
+  .tab-bar,
+  .sub {
+    display: none;
+  }
+
+  .sidebar {
+    width: 72px;
+    height: 100%;
+  }
+
+  .section {
+    width: calc(100% - 72px);
+  }
+}
+
+/* Large Tablet: 1145px ~ 1249px */
+@media (min-width: 1145px) and (max-width: 1249px) {
+  .header,
+  .tab-bar {
+    display: none;
+  }
+
+  .sidebar {
+    width: 72px;
+    height: 100%;
+  }
+
+  .section {
+    width: calc(100% - 72px);
+  }
+}
+
+/* Desktop: 1250px 이상 */
+@media (min-width: 1250px) {
+  .header,
+  .tab-bar {
+    display: none;
+  }
+
+  .sidebar {
+    width: 244px;
+    height: 100%;
+  }
+
+  .section {
+    width: calc(100% - 244px);
+  }
+}
