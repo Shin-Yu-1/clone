@@ -1,0 +1,113 @@
+.logo-layout {
+  padding: 25px 12px 16px;
+  height: 73px;
+  margin-bottom: 19px;
+  box-sizing: border-box;
+}
+
+.menu-layout {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+}
+
+.logo {
+  height: 29px;
+  margin-top: 8px;
+  background-image: url('../assets/icon/instagram_text.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.selected {
+  font-weight: 700;
+}
+
+.menu-item .profile {
+ border-radius: 50%;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.menu-label {
+  white-space: nowrap;
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+
+/* ────────────────────────────── */
+/* Mobile: 0 ~ 471 & 472 ~ 752px */
+@media (max-width: 471px) {
+  .logo {
+    height: 29px;
+    background-image: url('../assets/icon/instagram_symbol.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+  }
+
+  .menu-label {
+    display: none;
+  }
+}
+
+@media (min-width: 472px) and (max-width: 752px) {
+  .logo {
+    height: 29px;
+    background-image: url('../assets/icon/instagram_symbol.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+  }
+
+  .menu-label {
+    display: none;
+  }
+}
+
+/* Tablet: 753px ~ 1144px */
+@media (min-width: 753px) and (max-width: 1144px) {
+  .logo {
+    height: 29px;
+    background-image: url('../assets/icon/instagram_symbol.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+  }
+
+  .menu-label {
+    display: none;
+  }
+}
+
+/* Large Tablet: 1145px ~ 1249px */
+@media (min-width: 1145px) and (max-width: 1249px) {
+  .logo {
+    height: 29px;
+    background-image: url('../assets/icon/instagram_symbol.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+  }
+
+  .menu-label {
+    display: none;
+  }
+}
+
+/* Desktop: 1250px 이상 */
+@media (min-width: 1250px) {
+}
