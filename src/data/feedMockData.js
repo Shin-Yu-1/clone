@@ -42,7 +42,7 @@ export const feedMockData = [
   {
     id: 'post003',
     author: {
-      username: 'foodie_jk',
+      username: 'foodie_rule',
       profileImage: 'https://randomuser.me/api/portraits/men/3.jpg'
     },
     timestamp: '2025-04-14T12:00:00Z',
