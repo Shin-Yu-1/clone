@@ -6,7 +6,7 @@ const Main = () => {
   const storyLayout = document.createElement('div');
   storyLayout.className = 'stroy-layout';
   const feedLayout = document.createElement('div');
-  feedLayout.className = 'feedLayout-layout';
+  feedLayout.className = 'feed-layout';
 
   mainContainer.appendChild(storyLayout);
   mainContainer.appendChild(feedLayout);
