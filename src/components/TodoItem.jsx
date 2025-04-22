@@ -38,6 +38,7 @@ const TodoItem = ({ todo, index, handleDragStart, handleDragOver, handleDrop }) 
     if (editable) {
       dispatch(todoChanged({ id: todo.id, text }));
     }
+
     setEditable(!editable);
   };
 
