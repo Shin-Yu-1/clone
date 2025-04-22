@@ -8,37 +8,40 @@ window.addEventListener("scroll", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const track = document.querySelector(".carousel-track");
-  const prevButton = document.querySelector(".carousel-prev");
-  const nextButton = document.querySelector(".carousel-next");
+  const itemsPerSlide = 4;
 
-  const items = document.querySelectorAll(".carousel-item");
-  const itemsPerSlide = 4; // 한 번에 보이는 이미지 개수
-  const totalItems = items.length;
-  let currentIndex = 0;
+  document.body.addEventListener("click", (event) => {
+    const isPrev = event.target.closest(".carousel-prev");
+    const isNext = event.target.closest(".carousel-next");
 
-  // 한 번 이동할 거리 계산
-  const slideWidth = items[0].offsetWidth * itemsPerSlide;
+    if (!isPrev && !isNext) return;
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    prevButton.disabled = currentIndex === 0;
-    nextButton.disabled = currentIndex >= Math.ceil(totalItems / itemsPerSlide) - 1;
-  }
+    const container = event.target.closest(".carousel-container");
+    const track = container.querySelector(".carousel-track");
+    const items = container.querySelectorAll(".carousel-item");
+    const totalItems = items.length;
+    const slideWidth = items[0].offsetWidth * itemsPerSlide;
 
-  nextButton.addEventListener("click", () => {
-    if (currentIndex < Math.ceil(totalItems / itemsPerSlide) - 1) {
+    const matrix = window.getComputedStyle(track).transform;
+    let currentX = 0;
+    if (matrix !== "none") {
+      currentX = parseFloat(matrix.split(",")[4]); // translateX 값
+    }
+
+    let currentIndex = Math.round(Math.abs(currentX) / slideWidth);
+
+    if (isNext && currentIndex < Math.ceil(totalItems / itemsPerSlide) - 1) {
       currentIndex++;
-      updateCarousel();
-    }
-  });
-
-  prevButton.addEventListener("click", () => {
-    if (currentIndex > 0) {
+    } else if (isPrev && currentIndex > 0) {
       currentIndex--;
-      updateCarousel();
     }
-  });
 
-  updateCarousel(); // 초기 상태 업데이트
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+    const prevBtn = container.querySelector(".carousel-prev");
+    const nextBtn = container.querySelector(".carousel-next");
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled =
+      currentIndex >= Math.ceil(totalItems / itemsPerSlide) - 1;
+  });
 });
