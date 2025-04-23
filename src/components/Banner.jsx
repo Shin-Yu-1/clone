@@ -37,20 +37,29 @@ const HomeContainer = styled.div`
   height: 100%;
 `;
 
-const Banner = () => {
+const Banner = ({ showToast }) => {
   const [movie, setMovie] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
 
-  useEffect(async () => {
-    const request = await axios.get(requests.fetchNowPlaying);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const request = await axios.get(requests.fetchNowPlaying);
 
-    const movieId =
-      request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
+        const movieId =
+          request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
 
-    const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
-      params: { append_to_response: 'videos' },
-    });
-    setMovie(movieDetail);
+        const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
+          params: { append_to_response: 'videos' },
+        });
+
+        setMovie(movieDetail);
+      } catch (error) {
+        showToast('정보를 가져오지 못했습니다.', 'error');
+      }
+    };
+
+    fetchData();
   }, []);
 
   const truncate = (str, n) => {

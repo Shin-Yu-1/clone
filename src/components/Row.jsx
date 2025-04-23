@@ -14,16 +14,25 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Row = ({ isLargeRow, title, id, fetchUrl }) => {
+const Row = ({ isLargeRow, title, id, fetchUrl, showToast }) => {
   const [movies, setMovies] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [movieSelected, setMovieSelected] = useState({});
 
-  useEffect(async () => {
-    const request = await axios.get(fetchUrl);
-    console.log('request', request);
-    setMovies(request.data.results);
-  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const request = await axios.get(fetchUrl);
+        setMovies(request.data.results);
+      } catch (error) {
+        if (typeof showToast === 'function') {
+          showToast('정보를 가져오지 못했습니다.', 'error');
+        }
+      }
+    };
+
+    fetchData();
+  }, [fetchUrl, showToast]);
 
   const handleClick = movie => {
     setModalOpen(true);
@@ -59,9 +68,8 @@ const Row = ({ isLargeRow, title, id, fetchUrl }) => {
       >
         <div id={id} className="row__posters">
           {movies.map(movie => (
-            <SwiperSlide>
+            <SwiperSlide key={movie.id}>
               <img
-                key={movie.id}
                 style={{ padding: '25px 0' }}
                 className={`row__poster ${isLargeRow && 'row__posterLarge'}`}
                 src={`https://image.tmdb.org/t/p/original/${
