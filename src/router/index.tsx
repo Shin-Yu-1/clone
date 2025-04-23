@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Layout from '@/components/Layout.jsx';
+import Layout from '@/components/Layout';
 import { ROUTE_PATH } from '@/constant/routes';
-import DetailPage from '@/pages/detail/Detail.jsx';
+import DetailPage from '@/pages/detail/Detail';
 import ErrorPage from '@/pages/error/Error';
 import MainPage from '@/pages/main/Main';
-import SearchPage from '@/pages/search/Search.jsx';
+import SearchPage from '@/pages/search/Search';
 
 export const router = createBrowserRouter([
   {
