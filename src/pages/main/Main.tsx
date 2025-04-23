@@ -1,10 +1,11 @@
 import { requests } from '@/api/requests.js';
 import Banner from '@/components/Banner.jsx';
-import Row from '@/components/Row.jsx';
+import Row from '@/components/Row';
 import Toast from '@/components/Toast.jsx';
-import useToast from '../../hooks/useToast';
 
-export default function MainPage() {
+import useToast from '@/hooks/useToast';
+
+const MainPage = () => {
   const { message, type, show, showToast } = useToast({ autoClose: true, duration: 3000 });
 
   return (
@@ -35,4 +36,6 @@ export default function MainPage() {
       <Toast message={message} type={type} show={show} />
     </div>
   );
-}
+};
+
+export default MainPage;
