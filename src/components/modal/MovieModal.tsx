@@ -1,7 +1,19 @@
 import { useRef } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 import '@/components/modal/MovieModal.css';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
+
+interface MovieModalProps {
+  backdrop_path: string;
+  title?: string;
+  overview: string;
+  name?: string;
+  release_date: string;
+  first_air_date: string;
+  vote_average: number;
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
+}
 
 const MovieModal = ({
   backdrop_path,
@@ -12,8 +24,8 @@ const MovieModal = ({
   first_air_date,
   vote_average,
   setModalOpen,
-}) => {
-  const ref = useRef();
+}: MovieModalProps) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => {
     setModalOpen(false);
