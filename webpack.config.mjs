@@ -14,7 +14,7 @@ const envKeys = Object.fromEntries(
 
 export default {
   mode: 'development',
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -23,7 +23,7 @@ export default {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.[jt]sx?$/, // .js, .jsx, .ts, .tsx 전부 포함
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -36,7 +36,7 @@ export default {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
