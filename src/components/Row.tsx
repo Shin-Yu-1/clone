@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { MediaItem } from '@/types/api';
 
 import axios from '@/api/axios';
-import { requests } from '@/api/requests.js';
 import MovieModal from '@/components/modal/MovieModal';
 
 import '@/components/Row.css';
@@ -14,10 +13,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Row = ({ isLargeRow, title, id, fetchUrl, showToast }) => {
-  const [movies, setMovies] = useState([]);
+interface RowProps {
+  isLargeRow?: boolean;
+  title: string;
+  id: string;
+  fetchUrl: string;
+  showToast: (message: string, type?: 'info' | 'success' | 'error' | 'warning') => void;
+}
+
+const Row = ({ isLargeRow, title, id, fetchUrl, showToast }: RowProps) => {
+  const [movies, setMovies] = useState<MediaItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [movieSelected, setMovieSelected] = useState({});
+  const [movieSelected, setMovieSelected] = useState<MediaItem>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +41,8 @@ const Row = ({ isLargeRow, title, id, fetchUrl, showToast }) => {
     fetchData();
   }, [fetchUrl, showToast]);
 
-  const handleClick = movie => {
+  const handleClick = (movie: MediaItem) => {
+    console.log(movie);
     setModalOpen(true);
     setMovieSelected(movie);
   };
@@ -75,7 +83,7 @@ const Row = ({ isLargeRow, title, id, fetchUrl, showToast }) => {
                 src={`https://image.tmdb.org/t/p/original/${
                   isLargeRow ? movie.poster_path : movie.backdrop_path
                 } `}
-                alt={movie.name}
+                alt={movie.media_type === 'movie' ? movie.title : movie.name}
                 onClick={() => handleClick(movie)}
               />
             </SwiperSlide>
@@ -83,7 +91,7 @@ const Row = ({ isLargeRow, title, id, fetchUrl, showToast }) => {
         </div>
       </Swiper>
 
-      {modalOpen && <MovieModal {...movieSelected} setModalOpen={setModalOpen} />}
+      {modalOpen && movieSelected && <MovieModal {...movieSelected} setModalOpen={setModalOpen} />}
     </section>
   );
 };
