@@ -1,9 +1,15 @@
 import { useEffect, useState, useCallback } from 'react';
 
-type type = 'info' | 'success' | 'error' | 'warning';
+type type = 'info' | 'success' | 'error' | 'warning' | undefined;
+
+interface Toast {
+  message: string;
+  type: type;
+  show: boolean;
+}
 
 const useToast = ({ autoClose = true, duration = 3000 } = {}) => {
-  const [toast, setToast] = useState({
+  const [toast, setToast] = useState<Toast>({
     message: '',
     type: 'info',
     show: false,
