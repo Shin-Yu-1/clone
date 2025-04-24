@@ -23,7 +23,7 @@ const Nav = () => {
     };
   }, []);
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
     navigate(`/search?q=${e.target.value}`);
   };
