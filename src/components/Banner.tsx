@@ -44,7 +44,23 @@ interface BannerProps {
 }
 
 const Banner = ({ showToast }: BannerProps) => {
-  const [movie, setMovie] = useState<MediaItem>();
+  const [movie, setMovie] = useState<MediaItem>({
+    id: 0,
+    adult: false,
+    backdrop_path: '',
+    genre_ids: [],
+    original_language: '',
+    overview: '',
+    popularity: 0,
+    poster_path: '',
+    vote_average: 0,
+    vote_count: 0,
+    media_type: 'movie',
+    title: '',
+    original_title: '',
+    release_date: '',
+    video: false,
+  });
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
@@ -98,7 +114,9 @@ const Banner = ({ showToast }: BannerProps) => {
           }}
         >
           <div className="banner__contents">
-            <h1 className="banner__title">{movie?.title || movie?.name || movie?.original_name}</h1>
+            <h1 className="banner__title">
+              {movie.media_type === 'movie' ? movie.title : (movie.name ?? movie.original_name)}
+            </h1>
 
             <div className="banner__buttons">
               <button className="banner__button play" onClick={() => setIsClicked(true)}>
@@ -107,7 +125,7 @@ const Banner = ({ showToast }: BannerProps) => {
               <button className="banner__button info">More Information</button>
             </div>
 
-            <h1 className="banner__description">{truncate(movie?.overview, 100)}</h1>
+            <h1 className="banner__description">{truncate(movie.overview, 100)}</h1>
           </div>
           <div className="banner--fadeBottom" />
         </header>
