@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import axios from '@/api/axios';
 import { requests } from '@/api/requests.js';
+import { ShowToast } from '@/types/toast';
+import { MediaItem } from '@/types/api';
 
 import '@/components/Banner.css';
 
@@ -37,8 +39,12 @@ const HomeContainer = styled.div`
   height: 100%;
 `;
 
-const Banner = ({ showToast }) => {
-  const [movie, setMovie] = useState([]);
+interface BannerProps {
+  showToast: ShowToast;
+}
+
+const Banner = ({ showToast }: BannerProps) => {
+  const [movie, setMovie] = useState<MediaItem>();
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
@@ -49,7 +55,7 @@ const Banner = ({ showToast }) => {
         const movieId =
           request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
 
-        const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
+        const { data: movieDetail } = await axios.get<MediaItem>(`movie/${movieId}`, {
           params: { append_to_response: 'videos' },
         });
 
@@ -62,7 +68,7 @@ const Banner = ({ showToast }) => {
     fetchData();
   }, []);
 
-  const truncate = (str, n) => {
+  const truncate = (str: string, n: number) => {
     return str?.length > n ? str.substr(0, n - 1) + '...' : str;
   };
 
@@ -76,9 +82,9 @@ const Banner = ({ showToast }) => {
               height="360"
               src={`https://www.youtube.com/embed/${movie.videos.results[0].key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0].key}`}
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="autoplay; fullscreen"
-              allowfullscreen
+              allowFullScreen
             ></Iframe>
           </HomeContainer>
         </Container>
@@ -92,7 +98,7 @@ const Banner = ({ showToast }) => {
           }}
         >
           <div className="banner__contents">
-            <h1 className="banner__title">{movie.title || movie.name || movie.original_name}</h1>
+            <h1 className="banner__title">{movie?.title || movie?.name || movie?.original_name}</h1>
 
             <div className="banner__buttons">
               <button className="banner__button play" onClick={() => setIsClicked(true)}>
@@ -101,7 +107,7 @@ const Banner = ({ showToast }) => {
               <button className="banner__button info">More Information</button>
             </div>
 
-            <h1 className="banner__description">{truncate(movie.overview, 100)}</h1>
+            <h1 className="banner__description">{truncate(movie?.overview, 100)}</h1>
           </div>
           <div className="banner--fadeBottom" />
         </header>
