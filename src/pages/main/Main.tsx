@@ -1,5 +1,5 @@
 import { requests } from '@/api/requests.js';
-import Banner from '@/components/Banner.jsx';
+import Banner from '@/components/Banner';
 import Row from '@/components/Row';
 import Toast from '@/components/Toast.jsx';
 
