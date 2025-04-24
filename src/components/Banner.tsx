@@ -90,46 +90,30 @@ const Banner = ({ showToast }: BannerProps) => {
 
   return (
     <>
-      {isClicked ? (
-        <Container>
-          <HomeContainer>
-            <Iframe
-              width="640"
-              height="360"
-              src={`https://www.youtube.com/embed/${movie.videos.results[0].key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0].key}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-            ></Iframe>
-          </HomeContainer>
-        </Container>
-      ) : (
-        <header
-          className="banner"
-          style={{
-            backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
-            backgroundPosition: 'top center',
-            backgroundSize: 'cover',
-          }}
-        >
-          <div className="banner__contents">
-            <h1 className="banner__title">
-              {movie.media_type === 'movie' ? movie.title : (movie.name ?? movie.original_name)}
-            </h1>
+      <header
+        className="banner"
+        style={{
+          backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
+          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
+        }}
+      >
+        <div className="banner__contents">
+          <h1 className="banner__title">
+            {movie.media_type === 'movie' ? movie.title : (movie.name ?? movie.original_name)}
+          </h1>
 
-            <div className="banner__buttons">
-              <button className="banner__button play" onClick={() => setIsClicked(true)}>
-                Play
-              </button>
-              <button className="banner__button info">More Information</button>
-            </div>
-
-            <h1 className="banner__description">{truncate(movie.overview, 100)}</h1>
+          <div className="banner__buttons">
+            <button className="banner__button play" onClick={() => setIsClicked(true)}>
+              Play
+            </button>
+            <button className="banner__button info">More Information</button>
           </div>
-          <div className="banner--fadeBottom" />
-        </header>
-      )}
+
+          <h1 className="banner__description">{truncate(movie.overview, 100)}</h1>
+        </div>
+        <div className="banner--fadeBottom" />
+      </header>
     </>
   );
 };
