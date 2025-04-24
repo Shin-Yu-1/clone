@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 
-// type: 'info' | 'success' | 'error' | 'warning'
+type type = 'info' | 'success' | 'error' | 'warning';
+
 const useToast = ({ autoClose = true, duration = 3000 } = {}) => {
   const [toast, setToast] = useState({
     message: '',
@@ -8,7 +9,7 @@ const useToast = ({ autoClose = true, duration = 3000 } = {}) => {
     show: false,
   });
 
-  const showToast = useCallback((message, type = 'info') => {
+  const showToast = useCallback((message: string, type: type) => {
     setToast({ message, type, show: true });
   }, []);
 
