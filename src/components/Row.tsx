@@ -42,7 +42,6 @@ const Row = ({ isLargeRow, title, id, fetchUrl, showToast }: RowProps) => {
   }, [fetchUrl, showToast]);
 
   const handleClick = (movie: MediaItem) => {
-    console.log(movie);
     setModalOpen(true);
     setMovieSelected(movie);
   };
