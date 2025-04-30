@@ -1,4 +1,4 @@
-import { requests } from '@/api/requests.js';
+import { requests } from '@/api/requests.ts';
 import Banner from '@/components/Banner';
 import Row from '@/components/Row';
 import Toast from '@/components/Toast.jsx';

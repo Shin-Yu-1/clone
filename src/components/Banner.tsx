@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import axios from '@/api/axios';
-import { requests } from '@/api/requests.js';
+import { requests } from '@/api/requests.ts';
 import { ShowToast } from '@/types/toast';
 import { MediaItem } from '@/types/api';
 
